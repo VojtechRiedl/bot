@@ -11,10 +11,13 @@ RUN apt-get update && apt-get install -y git
 RUN git clone https://github.com/VojtechRiedl/bot.git .
 
 # Buildíme Maven projekt a nastavíme manifest
-RUN mvn clean package \
-    && mv target/*.jar app.jar \
-    && echo "Main-Class: me.histal.Main" > manifest.txt \
-    && jar cmf manifest.txt app.jar
+RUN mvn clean package
+RUN cp target/*.jar app.jar
+RUN echo "Main-Class: me.histal.Main" > manifest.txt
+RUN jar cmf manifest.txt app.jar
+
+
+
 
 # Druhý stage - pouze pro spuštění aplikace
 FROM openjdk:11-jre-slim
