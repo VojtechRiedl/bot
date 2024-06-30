@@ -4,14 +4,17 @@ FROM maven:3.8.5-openjdk-17 AS build
 # Set the working directory in the container
 WORKDIR /app
 
-# Clone the project from GitHub
+# Clone the project from GitHub (if needed)
 RUN git clone https://github.com/VojtechRiedl/bot.git
 
-# Change working directory to the cloned project
-WORKDIR /app/bot
+# Copy the Maven configuration file (if needed)
+COPY pom.xml .
 
-# Compile the Java code using Maven
+# Build the application
 RUN mvn clean package
+
+# Change working directory to the cloned project
+WORKDIR /app
 
 # Stage 2: Use a smaller base image for runtime
 FROM openjdk:17-alpine
@@ -20,7 +23,7 @@ FROM openjdk:17-alpine
 WORKDIR /app
 
 # Copy the compiled artifacts from the build stage
-COPY --from=build /app/bot/target/*.jar /app/app.jar
+COPY --from=build /app/target/*.jar /app/app.jar
 
 # Specify the command to run your application
 ENTRYPOINT ["java", "-jar", "app.jar"]
