@@ -8,7 +8,7 @@ WORKDIR /app
 RUN git clone https://github.com/VojtechRiedl/bot.git
 
 # Sestavíme projekt pomocí Mavenu
-RUN mvn clean package
+RUN javac src/main/java/me/histal/Main.java
 
 # Nastavíme vstupní bod pro spuštění aplikace
-ENTRYPOINT ["java", "-cp", "target/classes", "com.example.Main"]
+ENTRYPOINT ["java", "Main"]
