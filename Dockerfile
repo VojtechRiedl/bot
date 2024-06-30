@@ -4,7 +4,7 @@ FROM maven:3.8.5-openjdk-17 AS build
 # Set the working directory in the container
 WORKDIR /app
 
-# Clone the project from GitHub (if needed)
+# Clone the project from GitHub
 RUN git clone https://github.com/VojtechRiedl/bot.git .
 
 # Build the application
