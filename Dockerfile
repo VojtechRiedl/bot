@@ -5,7 +5,7 @@ FROM maven:3.8.5-openjdk-17
 WORKDIR /app
 
 # Stáhneme projekt z GitHubu
-RUN git clone https://github.com/uzivatel/projekt .
+RUN git clone https://github.com/VojtechRiedl/bot.git
 
 # Sestavíme projekt pomocí Mavenu
 RUN mvn clean package
