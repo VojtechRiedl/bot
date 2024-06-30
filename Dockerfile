@@ -8,7 +8,7 @@ WORKDIR /app
 RUN git clone https://github.com/VojtechRiedl/bot.git
 
 # Build the application
-RUN compile -f pom.xml
+RUN mvn clean package
 
 # Change working directory to the cloned project
 WORKDIR /app
