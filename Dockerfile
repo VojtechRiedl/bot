@@ -10,7 +10,7 @@ RUN git clone https://github.com/VojtechRiedl/bot.git .
 # Build the application
 RUN mvn clean package
 
-ENTRYPOINT ["java", "-jar", "/app/target/*.jar"]
+ENTRYPOINT ["java", "-jar", "/app/target/discord-bot-1.0.jar"]
 
 # Stage 2: Use a smaller base image for runtime
 #FROM openjdk:17-alpine
