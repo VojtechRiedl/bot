@@ -7,11 +7,8 @@ WORKDIR /app
 # Clone the project from GitHub (if needed)
 RUN git clone https://github.com/VojtechRiedl/bot.git
 
-# Copy the Maven configuration file (if needed)
-COPY pom.xml .
-
 # Build the application
-RUN mvn clean package
+RUN compile -f pom.xml
 
 # Change working directory to the cloned project
 WORKDIR /app
