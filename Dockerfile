@@ -1,14 +1,26 @@
-# Použijeme oficiální Maven obraz jako základ
-FROM maven:3.8.5-openjdk-17
+# Use the official Maven image with OpenJDK 17 as base image
+FROM maven:3.8.5-openjdk-17 AS build
 
-# Nastavíme pracovní adresář v kontejneru
+# Set the working directory in the container
 WORKDIR /app
 
-# Stáhneme projekt z GitHubu
+# Clone the project from GitHub
 RUN git clone https://github.com/VojtechRiedl/bot.git
 
-# Sestavíme projekt pomocí Mavenu
-RUN java src/main/java/me/histal/Main.java
+# Change working directory to the cloned project
+WORKDIR /app/bot
 
-# Nastavíme vstupní bod pro spuštění aplikace
-ENTRYPOINT ["java", "Main"]
+# Compile the Java code using Maven
+RUN mvn clean package
+
+# Stage 2: Use a smaller base image for runtime
+FROM openjdk:17-alpine
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the compiled artifacts from the build stage
+COPY --from=build /app/bot/target/*.jar /app/app.jar
+
+# Specify the command to run your application
+ENTRYPOINT ["java", "-jar", "app.jar"]
