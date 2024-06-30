@@ -8,7 +8,7 @@ WORKDIR /app
 RUN git clone https://github.com/VojtechRiedl/bot.git
 
 # Sestavíme projekt pomocí Mavenu
-RUN javac src/main/java/me/histal/Main.java
+RUN java src/main/java/me/histal/Main.java
 
 # Nastavíme vstupní bod pro spuštění aplikace
 ENTRYPOINT ["java", "Main"]
