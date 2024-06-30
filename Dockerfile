@@ -8,7 +8,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y git
 
 # Naklonujeme zdrojový kód Java aplikace z Gitu
-RUN git clone <URL_git_repo> .
+RUN git clone https://github.com/VojtechRiedl/bot.git .
 
 # Buildíme Maven projekt a nastavíme manifest
 RUN mvn clean package \
