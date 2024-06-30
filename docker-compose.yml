@@ -3,6 +3,5 @@ version: '3.8'
 services:
   app:
     build: .
-    container_name: discord-bot
     ports:
-      - "8080:8080"
+      - "5000:5000"
