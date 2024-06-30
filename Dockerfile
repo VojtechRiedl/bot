@@ -2,7 +2,7 @@
 FROM maven:3.8.5-openjdk-17 AS build
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /discord
 
 # Clone the project from GitHub
 RUN git clone https://github.com/VojtechRiedl/bot.git .
@@ -10,7 +10,7 @@ RUN git clone https://github.com/VojtechRiedl/bot.git .
 # Build the application
 RUN mvn clean package
 
-ENTRYPOINT ["java", "-jar", "/app/target/discord-bot-1.0.jar"]
+ENTRYPOINT ["java", "-jar", "/target/discord-bot-1.0.jar"]
 
 # Stage 2: Use a smaller base image for runtime
 #FROM openjdk:17-alpine
