@@ -1,24 +1,18 @@
-# Use an official Maven image as the base image
-FROM maven:3.8.4-openjdk-17-slim AS build
+# Use an official OpenJDK image as the base image
+FROM openjdk:11-jdk
 
-# Set the working directory in the container
-WORKDIR /app
+# Install Git and Maven
+RUN apt-get update
+RUN apt-get install -y maven
 
 # Clone the Java application from GitHub
-RUN apt-get update && apt-get install -y git
-RUN git clone https://github.com/VojtechRiedl/bot.git .
+RUN git clone https://github.com/VojtechRiedl/bot.git /usr/local/service
+
+# Set the working directory to the cloned repository
+WORKDIR /usr/local/service
 
 # Build the application using Maven
-RUN mvn clean package -DskipTests
-
-# Use an official OpenJDK image as the base image for runtime
-FROM openjdk:17-jre-slim
-
-# Set the working directory in the container
-WORKDIR /app
-
-# Copy the built JAR file from the previous stage to the container
-COPY --from=build /app/target/discord-bot-1.0.jar .
+RUN mvn package
 
 # Set the command to run the application
-CMD ["java", "-jar", "discord-bot-1.0.jar"]
+CMD ["java", "-jar", "target/docker-service-1.0-SNAPSHOT-jar-with-dependencies.jar"]
