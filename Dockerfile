@@ -1,7 +1,14 @@
-# Maven
+# Maven build stage
 FROM maven:3.8.1-openjdk-11-slim AS builder
+
+# Set working directory
 WORKDIR /app
-COPY pom.xml .
+
+# Clone Git repository
+RUN git clone https://github.com/yourusername/yourrepository.git /app
+
+# Resolve dependencies
 RUN mvn -e -B dependency:resolve
-COPY src ./src
-RUN mvn clean -e -B package
+
+# Package the application
+RUN mvn clean -e -B packagekage
