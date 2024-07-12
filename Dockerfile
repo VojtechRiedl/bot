@@ -9,6 +9,8 @@ WORKDIR /app
 # Clone the repository with the Discord bot
 RUN git clone https://github.com/VojtechRiedl/bot.git .
 
+COPY . /app
+
 # Instalace závislostí Maven projektu
 RUN mvn install
 
