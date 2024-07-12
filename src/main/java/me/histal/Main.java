@@ -2,25 +2,20 @@ package me.histal;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import javax.swing.*;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Map;
 import java.util.Properties;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         Properties properties = new Properties();
-        try (FileInputStream fis = new FileInputStream("../stack.env")) {
+        try (FileInputStream fis = new FileInputStream("stack.env")) {
             properties.load(fis);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
         String token = properties.getProperty("TOKEN");
 
