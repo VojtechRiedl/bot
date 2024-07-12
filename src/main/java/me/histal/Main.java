@@ -10,22 +10,27 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-    String token =  System.getenv("OS");
-        Map<String, String> env_var = System.getenv();
+        String token =  System.getenv("TOKEN");
+
         Logger logger = LoggerFactory.getLogger(Main.class);
 
+        java.util.logging.Logger.getAnonymousLogger().info("token" + token);
+
+        java.util.logging.Logger.getAnonymousLogger().info(System.getenv("PATH"));
+
+        java.util.logging.Logger.getAnonymousLogger().info(System.getenv("JAVA_HOME"));
+
+        java.util.logging.Logger.getAnonymousLogger().info(System.getenv("MAVEN_CONFIG"));
+
+        logger.error("token" + token);
+        logger.error(System.getenv("PATH"));
+        logger.error(System.getenv("JAVA_HOME"));
         // Loop through all environment variables
-        for (String envName : env_var.keySet()) {
 
-            logger.info("envName: " + envName + " env_var: " + env_var.get(envName));
-            // Print environment variable name and value to console
-        }
-    System.out.println(token);
-
-    JDA jda = JDABuilder.createDefault(token)
-            .build();
-    // optionally block until JDA is ready
-    jda.awaitReady();
+        JDA jda = JDABuilder.createDefault(token)
+                .build();
+        // optionally block until JDA is ready
+        jda.awaitReady();
 
     }
 }
