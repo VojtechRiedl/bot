@@ -10,5 +10,8 @@ public class Main {
 
         // optionally block until JDA is ready
         jda.awaitReady();
+
+
+        System.out.println("Finished Building JDA!");
     }
 }
