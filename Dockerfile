@@ -13,4 +13,4 @@ RUN git clone https://github.com/VojtechRiedl/bot.git .
 RUN mvn install
 
 # Spuštění Discord botu (pokud je jar soubor ve stejné složce jako Dockerfile)
-CMD ["java", "-jar", "discord-bot-1.0.jar"]
+CMD ["java", "-jar", "target/discord-bot-1.0.jar"]
