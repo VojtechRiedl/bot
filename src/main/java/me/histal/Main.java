@@ -5,8 +5,8 @@ import net.dv8tion.jda.api.JDABuilder;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-
-        JDA jda = JDABuilder.createDefault("")
+    String token =  System.getenv("TOKEN");
+        JDA jda = JDABuilder.createDefault(token)
                 .build();
 
         // optionally block until JDA is ready
